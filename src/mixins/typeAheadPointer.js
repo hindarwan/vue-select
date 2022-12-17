@@ -7,10 +7,12 @@ export default {
 
   watch: {
     filteredOptions() {
-      for (let i = 0; i < this.filteredOptions.length; i++) {
-        if (this.selectable(this.filteredOptions[i])) {
-          this.typeAheadPointer = i
-          break
+      if (this.search.length !== 0) {
+        for (let i = 0; i < this.filteredOptions.length; i++) {
+          if (this.selectable(this.filteredOptions[i])) {
+            this.typeAheadPointer = i
+            break
+          }
         }
       }
     },
@@ -79,8 +81,8 @@ export default {
       this.typeAheadPointer =
         this.selectedValue.length !== 0
           ? this.filteredOptions.indexOf(
-              this.selectedValue[this.selectedValue.length - 1]
-            )
+            this.selectedValue[this.selectedValue.length - 1]
+          )
           : -1
     },
   },
